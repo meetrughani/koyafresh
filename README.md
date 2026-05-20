@@ -1,1 +1,454 @@
-# koyafresh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KoyaFresh | Fresh Koya & Mava</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #fffaf5;
+      color: #333;
+    }
+
+    header {
+      background: #8b4513;
+      color: white;
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+    }
+
+    .hero {
+      height: 90vh;
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('hariyali.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #ffb703;
+      color: black;
+      padding: 12px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #ffd166;
+      transform: scale(1.03);
+    }
+
+    .section {
+      padding: 70px 50px;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #8b4513;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 10px;
+      color: #8b4513;
+    }
+
+    .price {
+      color: #8b4513;
+      font-size: 24px;
+      margin: 15px 0;
+      font-weight: bold;
+    }
+
+    .offer-box {
+      background: #ffe8c2;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 40px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .review-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .review {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .cart-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #8b4513;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 14px;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 999;
+    }
+
+    footer {
+      background: #8b4513;
+      color: white;
+      text-align: center;
+      padding: 35px;
+      margin-top: 50px;
+    }
+
+    @media(max-width:768px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 38px;
+      }
+
+      .hero-content p {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 50px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>KoyaFresh</h1>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#offers">Offers</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Fresh & Pure Koya Delivered Daily</h1>
+      <p>Premium quality mava for sweets, desserts, bakeries & festivals.</p>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>About Us</h2>
+    <p>
+      We provide fresh, hygienic and authentic koya/mava made from pure milk.
+      Perfect for homes, sweet shops, bakeries and restaurants.
+    </p>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>Fresh Daily</h3>
+        <p>Prepared fresh every day.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Bulk Orders</h3>
+        <p>Available for sweet shops & events.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Fast Delivery</h3>
+        <p>Quick local delivery service.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Pure Milk</h3>
+        <p>Premium quality ingredients only.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="products">
+    <h2>Our Products</h2>
+
+    <div class="products">
+
+      <div class="product-card">
+        <img src="white mava.jpg" alt="Fresh White Koya">
+        <div class="product-info">
+          <h3>Fresh White Koya</h3>
+          <p>Soft and creamy fresh koya.</p>
+          <div class="price">₹350/kg</div>
+          <button class="btn" onclick="orderNow('Fresh White Koya', 350)">Order Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="hariyali.jpg" alt="Special Gulab Jamun Koya">
+        <div class="product-info">
+          <h3>Special Gulab Jamun Koya</h3>
+          <p>Traditional rich-flavor mava.</p>
+          <div class="price">₹350/kg</div>
+          <button class="btn" onclick="orderNow('Special Gulab Jamun Koya', 350)">Order Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="sweet koya.jpg" alt="Sweet Koya">
+        <div class="product-info">
+          <h3>Sweet Koya</h3>
+          <p>Ready-to-use sweet koya for desserts.</p>
+          <div class="price">₹300/kg</div>
+          <button class="btn" onclick="orderNow('Sweet Koya', 300)">Order Now</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <img src="kalakand.jpg" alt="Kalakand">
+        <div class="product-info">
+          <h3>Kalakand</h3>
+          <p>Fresh traditional kalakand.</p>
+          <div class="price">₹320/kg</div>
+          <button class="btn" onclick="orderNow('Kalakand', 320)">Order Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="offers">
+    <h2>Special Offers</h2>
+
+    <div class="offer-box">
+      🏪 Special Rates For Bulk Orders <br>
+      📞 Festival & Wedding Orders Accepted
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <h2>Customer Reviews</h2>
+
+    <div class="review-container">
+
+      <div class="review">
+        ⭐⭐⭐⭐⭐<br><br>
+        "Very fresh koya and fast delivery service."
+        <h4>- Rahul</h4>
+      </div>
+
+      <div class="review">
+        ⭐⭐⭐⭐⭐<br><br>
+        "Best quality mava for sweets and desserts."
+        <h4>- Sneha</h4>
+      </div>
+
+      <div class="review">
+        ⭐⭐⭐⭐⭐<br><br>
+        "Affordable price with premium quality."
+        <h4>- Imran</h4>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Place Your Order</h2>
+
+    <form class="contact-form" onsubmit="sendOrder(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+
+      <select id="product">
+        <option>Fresh White Koya</option>
+        <option>Special Gulab Jamun Koya</option>
+        <option>Sweet Koya</option>
+        <option>Kalakand</option>
+      </select>
+
+      <input type="number" id="quantity" placeholder="Quantity in KG" required>
+
+      <textarea id="address" rows="5" placeholder="Delivery Address"></textarea>
+
+      <button type="submit" class="btn">Submit Order</button>
+    </form>
+  </section>
+
+  <div class="cart-box" id="cartBox">
+    Cart Items: 0
+  </div>
+
+  <footer>
+    <h3>Contact Us</h3>
+    <p>Whatsapp: +91 7977259057</p>
+    <p>Phone: +91 9773020403</p>
+    <p>Email: RughaniTrader2025@gmail.com</p>
+    <br>
+    <p>© 2026 KoyaFresh. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function orderNow(product, price) {
+      cartCount++;
+      document.getElementById('cartBox').innerText = `Cart Items: ${cartCount}`;
+
+      const phone = '919773020403';
+      const message = `Hello KoyaFresh! I want to order:\n\nProduct: ${product}\nPrice: ₹${price}/kg`;
+
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function sendOrder(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phoneNo = document.getElementById('phone').value;
+      const product = document.getElementById('product').value;
+      const quantity = document.getElementById('quantity').value;
+      const address = document.getElementById('address').value;
+
+      const whatsappNumber = '917977259057';
+
+      const text = `🛒 New Order From Website\n\nName: ${name}\nPhone: ${phoneNo}\nProduct: ${product}\nQuantity: ${quantity} KG\nAddress: ${address}`;
+
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
+```
+
+## Extra Features Added
+
+* Working WhatsApp order system
+* Order form
+* Cart counter
+* Customer reviews section
+* Offers section
+* Better mobile responsive design
+* Sticky navigation bar
+* Better hover animations
+* Bulk order support
+* Improved UI design
+* Product order buttons connected to WhatsApp
